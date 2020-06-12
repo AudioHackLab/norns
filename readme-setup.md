@@ -37,6 +37,7 @@ popd
 ## 3. configure virtual-fb
 
 ```
+cd ~
 git clone https://github.com/AudioHackLab/linux-module-virtfb.git
 make clean
 make all
