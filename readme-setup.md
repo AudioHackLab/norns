@@ -3,32 +3,24 @@
 ## build prerequisites
 
 ### packages
-```
-sudo apt-get install libevdev-dev liblo-dev libudev-dev libcairo2-dev liblua5.3-dev libavahi-compat-libdnssd-dev libasound2-dev
-```
 
-### sources
-
-build and install:
+use the debian repository as follows:
 
 ```
-https://github.com/monome/libmonome.git
-https://github.com/nanomsg/nanomsg.git
+sudo apt-get install libnanomsg-dev supercollider-language supercollider-server supercollider-supernova supercollider-dev liblua5.3-dev libudev-dev libevdev-dev liblo-dev libcairo2-dev libavahi-compat-libdnssd-dev libasound2-dev sc3-plugins ladspalist x11vnc xvncviewer
 ```
 
-or use the debian repository as follows:
+uninstall:
 
 ```
-curl https://keybase.io/artfwo/pgp_keys.asc | sudo apt-key add -
-echo "deb https://package.monome.org/ stretch main" | sudo tee /etc/apt/sources.list.d/norns.list
-sudo apt update
-sudo apt install libmonome-dev libnanomsg-dev supercollider-language supercollider-server supercollider-supernova supercollider-dev
+sudo apt remove cmdtest yarn
 ```
 
 ## building norns
 
 ```
-git clone https://github.com/monome/norns.git
+cd ~
+git clone -b virtfb https://github.com/AudioHackLab/norns.git
 cd norns
 ./waf configure
 ./waf
@@ -44,11 +36,18 @@ pushd sc
 popd
 ```
 
-## configure
+## configure virtual-fb
 
-- add `/usr/local/lib` to library search paths (if libmonome is installed from sources.)
-the recommended way to do this is by editing `/etc/ld.so.conf`. (use of the `LD_LIBRARY_PATH` variable is deprecated, since it willl override binary-specific settings.)
+```
+git clone https://github.com/AudioHackLab/linux-module-virtfb.git
+make clean
+make all
+sudo make install
+sudo depmod -a
+sudo modprobe virtual-fb
+```
 
+Note: to autostart virtual-fb at next reboot add it to /etc/modules or remember to keep loading it manually with `sudo modprobe virtual-fb`
 
 ## launching components
 
@@ -71,17 +70,57 @@ and immediately after sclang init, you should see the server being booted and so
 
 ### 2. launch `matron` (lua interpreter)
 
-with the audio engine running, run `matron.sh` from the norns directory. this creates a `matron` process wrapped with `ws-wrapper`
+with the audio engine running, run `matron.sh` from the norns directory. this creates a `matron` process wrapped with `ws-wrapper` and vnc server running on this host at port 5901.
 
 matron waits for crone to finish loading before entering the main event loop.
 
-### 3. launch `maiden` (web UI client)
+Note. The OSC udp port to control it bind at: 10111
+To see the virtual oled screen run `xvncviewer 127.0.0.1:5901`
 
-get most [recent version](https://github.com/monome/maiden/releases)
+### 3. launch `maiden` the web UI client (optional)
 
-download to `~/maiden/` and untar
+## download and install dust
 
-execute with `./maiden.arm -debug -site ./app/build -data ~/norns/lua/`
+```
+cd ~  
+git clone https://github.com/monome/dust
+cd dust
+git reset --hard c10c62c24e88d1dc10c5eb3ed77f5b9b451fbe6c
+```
+
+## download and install maiden
+
+```
+sudo apt-get install golang
+export PATH=$PATH:~/go/bin
+export GOPATH=$HOME/go
+go get -d github.com/monome/maiden
+cd ~/go/src/github.com/monome/maiden  
+git reset --hard e4d4a9082d718f41335b00e14090a965a55e17b7
+go build
+cd ~  
+ln -s ~/go/src/github.com/monome/maiden
+cd maiden
+cp -v tool/start.sh .
+```
+
+## setup and build maiden UI
+
+```
+curl -sL https://deb.nodesource.com/setup_10.x 1 | sudo -E bash -  
+sudo apt-get install nodejs  
+sudo npm install -g yarn
+sudo npm install react-scripts  
+cd web
+rm -rf build 
+yarn install
+yarn build
+cd ..
+mkdir -pv ./app
+cp -rv ./web/build ./app
+```
+
+run `start.sh` to execute it and browse it [http://127.0.0.1:5000/maiden](http://127.0.0.1:5000/maiden)
 
 
 ## docs addendum

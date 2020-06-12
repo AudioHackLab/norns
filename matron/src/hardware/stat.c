@@ -72,18 +72,18 @@ void *stat_check(void *x) {
       pclose(fd);
     }
 
-    // check temp
-    if ((fd = popen("vcgencmd measure_temp", "r")) == NULL) {
-      fprintf(stderr,"Error opening pipe: temp read\n");
-    }
-    else {
-      while (fgets(buf, 16, fd) != NULL) {
-        strncpy(bufsub,buf+5,2);
-        temp = atoi(bufsub);
+    // check temp on raspi
+//    if ((fd = popen("vcgencmd measure_temp", "r")) == NULL) {
+//      fprintf(stderr,"Error opening pipe: temp read\n");
+//    }
+//    else {
+//      while (fgets(buf, 16, fd) != NULL) {
+//        strncpy(bufsub,buf+5,2);
+//        temp = atoi(bufsub);
         //fprintf(stderr,"temp: %d\r\n", temp);
-      }
-    }
-    pclose(fd);
+//      }
+//    }
+//    pclose(fd);
 
     // check cpu
     if ((fd = popen("head -n1 /proc/stat", "r")) == NULL) {

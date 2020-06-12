@@ -83,6 +83,79 @@ int osc_receive(const char *path,
     (void)argc;
     (void)user_data;
 
+    // this is where the encoder and key events are generated, 
+    // in enc check, the event enc.n is looking for a value to select the right encoder (1,2,3) 
+    // and enc.delta is looking for the direction (-1, 1)
+    // In key check, I’ve tried some values, enc.n (0,1,2) and enc.delta (0,1) or (1,-1)
+    // thanks Taubaland and TheTechnobear!!!
+    // HERE for info https://llllllll.co/t/norns-on-raspberry-pi/14148/339
+
+    int i;
+    float x;
+
+
+    //printf("path: <%s>\n", path);
+    for (i = 0; i < argc; i++) {
+
+        x = argv[0]->f;
+        char enc0 = strcmp(path, "/enc0");
+        char enc1 = strcmp(path, "/enc1");
+        char enc2 = strcmp(path, "/enc2");
+        char key0 = strcmp(path, "/key0");
+        char key1 = strcmp(path, "/key1");
+        char key2 = strcmp(path, "/key2");
+    
+        if (enc0 == 0)
+        {
+            union event_data *ev = event_data_new(EVENT_ENC);
+                ev->enc.n =  1;
+                ev->enc.delta = x;
+                event_post(ev);
+        }
+
+        if (enc1 == 0)
+        {
+            union event_data *ev = event_data_new(EVENT_ENC);
+                ev->enc.n =  2;
+                ev->enc.delta = x;
+                event_post(ev);
+        }
+
+        if (enc2 == 0)
+        {
+            union event_data *ev = event_data_new(EVENT_ENC);
+                ev->enc.n =  3;
+                ev->enc.delta = x;
+                event_post(ev);
+        }
+    
+        if (key0 == 0)
+        {
+        union event_data *ev = event_data_new(EVENT_KEY);
+                ev->enc.n = 1;
+                ev->enc.delta = x;
+                event_post(ev);
+        }   
+
+        if (key1 == 0)
+        {
+        union event_data *ev = event_data_new(EVENT_KEY);
+                ev->enc.n = 2;
+                ev->enc.delta = x;
+                event_post(ev);
+        }   
+
+        if (key2 == 0)
+        {
+        union event_data *ev = event_data_new(EVENT_KEY);
+                ev->enc.n = 3;
+                ev->enc.delta = x;
+                event_post(ev);
+        }   
+
+    }
+   
+
     union event_data *ev = event_data_new(EVENT_OSC);
 
     ev->osc_event.path = strdup(path);

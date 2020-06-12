@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # do not try reserving device (disable dbus)
-export JACK_NO_AUDIO_RESERVATION=1
+#export JACK_NO_AUDIO_RESERVATION=1
 
 # start jack clients
 # scsynth -u 57122 -i 2 -o 2 &
