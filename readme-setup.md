@@ -1,12 +1,12 @@
 # norns setup
 
-## install packages prerequisites
+## 1. install packages prerequisites
 
 ```
 sudo apt-get install libnanomsg-dev supercollider-language supercollider-server supercollider-supernova supercollider-dev liblua5.3-dev libudev-dev libevdev-dev liblo-dev libcairo2-dev libavahi-compat-libdnssd-dev libasound2-dev sc3-plugins ladspalist x11vnc tigervnc-viewer
 ```
 
-## building norns
+## 2. building norns
 
 ```
 cd ~
@@ -26,7 +26,7 @@ pushd sc
 popd
 ```
 
-## configure virtual-fb
+## 3. configure virtual-fb
 
 ```
 git clone https://github.com/AudioHackLab/linux-module-virtfb.git
@@ -39,9 +39,9 @@ sudo modprobe virtual-fb
 
 Note: to autostart virtual-fb at next reboot add it to /etc/modules or remember to keep loading it manually with `sudo modprobe virtual-fb`
 
-## launching components
+## 4. launching components
 
-### 1. launch `crone` (audio engine)
+### a. launch `crone` (audio engine)
 
 run `crone.sh` from the norns directory. this creates a `sclang` process wrapped with `ws-wrapper`
 
@@ -58,7 +58,7 @@ if the crone classes are installed correctly, you should see some lines like thi
 
 and immediately after sclang init, you should see the server being booted and some jack/alsa related messages. 
 
-### 2. launch `matron` (lua interpreter)
+### b. launch `matron` (lua interpreter)
 
 with the audio engine running, run `matron.sh` from the norns directory. this creates a `matron` process wrapped with `ws-wrapper` and vnc server running on this host at port 5901.
 
@@ -66,9 +66,9 @@ matron waits for crone to finish loading before entering the main event loop.
 
 Note: The OSC rx port to control matron bind at: 10111 . To see the virtual oled screen run `xvncviewer 127.0.0.1:5901`
 
-### 3. launch `maiden` the web UI client (optional)
+## 5. setup `maiden` the web UI client (optional)
 
-## download and install dust
+### download and install dust
 
 ```
 cd ~  
@@ -77,7 +77,7 @@ cd dust
 git reset --hard c10c62c24e88d1dc10c5eb3ed77f5b9b451fbe6c
 ```
 
-## download and install maiden
+### download and install maiden
 
 ```
 sudo apt-get install golang
@@ -93,7 +93,7 @@ cd maiden
 cp -v tool/start.sh .
 ```
 
-## setup and build maiden UI
+### setup and build maiden UI
 
 ```
 sudo apt remove cmdtest yarn
@@ -113,7 +113,7 @@ cp -rv ./web/build ./app
 run `start.sh` to execute it and browse it [http://127.0.0.1:5000/maiden](http://127.0.0.1:5000/maiden)
 
 
-## docs addendum
+## 6. docs addendum (optional)
 
 if you want to generate the docs (using ldoc) first install:
 
