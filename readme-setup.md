@@ -1,8 +1,6 @@
 # norns setup
 
-## build prerequisites
-
-### packages
+## install packages prerequisites
 
 ```
 sudo apt-get install libnanomsg-dev supercollider-language supercollider-server supercollider-supernova supercollider-dev liblua5.3-dev libudev-dev libevdev-dev liblo-dev libcairo2-dev libavahi-compat-libdnssd-dev libasound2-dev sc3-plugins ladspalist x11vnc tigervnc-viewer
