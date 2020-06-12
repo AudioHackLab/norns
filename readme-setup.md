@@ -41,8 +41,8 @@ Note: to autostart virtual-fb at next reboot add it to /etc/modules or remember 
 
 ## 4. launching components
 
-run `start.sh` to execute it.
-Note: The OSC rx port to control matron bind at: 10111 . To see the virtual oled screen run `xvncviewer 127.0.0.1:5901`
+run `start.sh` to execute it.\
+Note: The OSC rx port to control matron bind at: 10111 . To see the virtual oled screen run `xvncviewer 127.0.0.1:5901`\
 
 This script will start two separate services automatically:
 
