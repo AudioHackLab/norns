@@ -8,12 +8,6 @@
 sudo apt-get install libnanomsg-dev supercollider-language supercollider-server supercollider-supernova supercollider-dev liblua5.3-dev libudev-dev libevdev-dev liblo-dev libcairo2-dev libavahi-compat-libdnssd-dev libasound2-dev sc3-plugins ladspalist x11vnc tigervnc-viewer
 ```
 
-uninstall:
-
-```
-sudo apt remove cmdtest yarn
-```
-
 ## building norns
 
 ```
@@ -104,6 +98,7 @@ cp -v tool/start.sh .
 ## setup and build maiden UI
 
 ```
+sudo apt remove cmdtest yarn
 curl -sL https://deb.nodesource.com/setup_10.x 1 | sudo -E bash -  
 sudo apt-get install nodejs  
 sudo npm install -g yarn
