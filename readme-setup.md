@@ -39,6 +39,7 @@ popd
 ```
 cd ~
 git clone https://github.com/AudioHackLab/linux-module-virtfb.git
+cd linux-module-virtfb
 make clean
 make all
 sudo make install
