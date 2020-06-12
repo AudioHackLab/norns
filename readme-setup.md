@@ -4,10 +4,8 @@
 
 ### packages
 
-use the debian repository as follows:
-
 ```
-sudo apt-get install libnanomsg-dev supercollider-language supercollider-server supercollider-supernova supercollider-dev liblua5.3-dev libudev-dev libevdev-dev liblo-dev libcairo2-dev libavahi-compat-libdnssd-dev libasound2-dev sc3-plugins ladspalist x11vnc xvncviewer
+sudo apt-get install libnanomsg-dev supercollider-language supercollider-server supercollider-supernova supercollider-dev liblua5.3-dev libudev-dev libevdev-dev liblo-dev libcairo2-dev libavahi-compat-libdnssd-dev libasound2-dev sc3-plugins ladspalist x11vnc tigervnc-viewer
 ```
 
 uninstall:
@@ -74,8 +72,7 @@ with the audio engine running, run `matron.sh` from the norns directory. this cr
 
 matron waits for crone to finish loading before entering the main event loop.
 
-Note. The OSC udp port to control it bind at: 10111
-To see the virtual oled screen run `xvncviewer 127.0.0.1:5901`
+Note: The OSC rx port to control matron bind at: 10111 . To see the virtual oled screen run `xvncviewer 127.0.0.1:5901`
 
 ### 3. launch `maiden` the web UI client (optional)
 
