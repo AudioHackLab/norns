@@ -13,14 +13,14 @@ sudo apt-get install liblo-dev libnanomsg-dev supercollider-language supercollid
 ```
 git clone https://github.com/monome/libmonome.git
 cd libmonome
-./waf configure
-./waf
+python ./waf configure
+python ./waf
 sudo ./waf install
 cd ~
 git clone -b virtfb https://github.com/AudioHackLab/norns.git
 cd norns
-./waf configure
-./waf
+python ./waf configure
+python ./waf
 ```
 
 this should build all the c-based components (`matron` and `ws-wrapper`.)
