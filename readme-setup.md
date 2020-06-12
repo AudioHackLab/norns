@@ -41,7 +41,12 @@ Note: to autostart virtual-fb at next reboot add it to /etc/modules or remember 
 
 ## 4. launching components
 
-### a. launch `crone` (audio engine)
+run `start.sh` to execute it.
+Note: The OSC rx port to control matron bind at: 10111 . To see the virtual oled screen run `xvncviewer 127.0.0.1:5901`
+
+This script will start two separate services automatically:
+
+### a. `crone` (audio engine)
 
 run `crone.sh` from the norns directory. this creates a `sclang` process wrapped with `ws-wrapper`
 
@@ -58,13 +63,11 @@ if the crone classes are installed correctly, you should see some lines like thi
 
 and immediately after sclang init, you should see the server being booted and some jack/alsa related messages. 
 
-### b. launch `matron` (lua interpreter)
+### b. `matron` (lua interpreter)
 
 with the audio engine running, run `matron.sh` from the norns directory. this creates a `matron` process wrapped with `ws-wrapper` and vnc server running on this host at port 5901.
 
 matron waits for crone to finish loading before entering the main event loop.
-
-Note: The OSC rx port to control matron bind at: 10111 . To see the virtual oled screen run `xvncviewer 127.0.0.1:5901`
 
 ## 5. setup `maiden` the web UI client (optional)
 
