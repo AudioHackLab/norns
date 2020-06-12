@@ -5,7 +5,7 @@
 ```
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get install liblo-dev libnanomsg-dev supercollider-language supercollider-server supercollider-supernova supercollider-dev liblua5.3-dev libudev-dev libevdev-dev liblo-dev libcairo2-dev libavahi-compat-libdnssd-dev libasound2-dev sc3-plugins ladspalist x11vnc tigervnc-viewer
+sudo apt-get install liblo-dev build-essential libboost-all-dev libnanomsg-dev supercollider-language supercollider-server supercollider-supernova supercollider-dev liblua5.3-dev libudev-dev libevdev-dev liblo-dev libcairo2-dev libavahi-compat-libdnssd-dev libasound2-dev sc3-plugins ladspalist x11vnc tigervnc-viewer
 ```
 
 ## 2. building norns and install monome.h (libmonome)
@@ -15,7 +15,8 @@ git clone https://github.com/monome/libmonome.git
 cd libmonome
 python ./waf configure
 python ./waf
-sudo ./waf install
+sudo ln -s /usr/bin/python3 /usr/bin/python
+sudo python ./waf install
 cd ~
 git clone -b virtfb https://github.com/AudioHackLab/norns.git
 cd norns
