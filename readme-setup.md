@@ -51,7 +51,7 @@ exit
 
 ## 4. launching components
 
-run `start.sh` to execute norns.\
+run `start.sh` to execute norns.
 
 Notes:\
 The OSC rx port to control matron bind at: 10111 .\
