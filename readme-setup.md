@@ -39,8 +39,7 @@ popd
 ```
 sudo modprobe vfb vfb_enable=1
 ```
-
-To autostart vfb at next reboot add:
+Temember to keep loading it manually at next reboot, otherwise to autostart vfb at next reboot add:
 ```
 sudo su
 echo "vfb" >> /etc/modules
@@ -49,7 +48,6 @@ options vfb vfb_enable=1
 EOF
 exit
 ```
-Otherwise remember to keep loading it manually with `sudo modprobe virtual-fb`
 
 ## 4. launching components
 
