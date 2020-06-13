@@ -39,7 +39,7 @@ popd
 ```
 sudo modprobe vfb vfb_enable=1
 ```
-Temember to keep loading it manually at next reboot, otherwise to autostart vfb at next reboot add:
+Remember to keep loading it manually at next reboot, otherwise to autostart vfb at next reboot add:
 ```
 sudo su
 echo "vfb" >> /etc/modules
