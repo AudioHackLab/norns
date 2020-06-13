@@ -5,7 +5,7 @@
 ```
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get install liblo-dev build-essential libboost-all-dev libnanomsg-dev supercollider-language supercollider-server supercollider-supernova supercollider-dev liblua5.3-dev libudev-dev libevdev-dev liblo-dev libcairo2-dev libavahi-compat-libdnssd-dev libasound2-dev sc3-plugins ladspalist x11vnc tigervnc-viewer
+sudo apt-get install fbset liblo-dev build-essential libboost-all-dev libnanomsg-dev supercollider-language supercollider-server supercollider-supernova supercollider-dev liblua5.3-dev libudev-dev libevdev-dev liblo-dev libcairo2-dev libavahi-compat-libdnssd-dev libasound2-dev sc3-plugins ladspalist x11vnc tigervnc-viewer
 ```
 
 ## 2. building norns and install monome.h (libmonome)
@@ -34,20 +34,22 @@ pushd sc
 popd
 ```
 
-## 3. configure virtual-fb
+## 3. configure vfb
 
 ```
-cd ~
-git clone https://github.com/AudioHackLab/linux-module-virtfb.git
-cd linux-module-virtfb
-make clean
-make all
-sudo make install
-sudo depmod -a
-sudo modprobe virtual-fb
+sudo modprobe vfb vfb_enable=1
 ```
 
-Note: to autostart virtual-fb at next reboot add it to /etc/modules or remember to keep loading it manually with `sudo modprobe virtual-fb`
+To autostart vfb at next reboot add:
+```
+sudo su
+echo "vfb" >> /etc/modules
+cat <<EOF > /etc/modprobe.d/vfb.conf
+options vfb vfb_enable=1
+EOF
+exit
+```
+Otherwise remember to keep loading it manually with `sudo modprobe virtual-fb`
 
 ## 4. launching components
 
