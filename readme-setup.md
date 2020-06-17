@@ -84,7 +84,7 @@ EOF
 exit
 ```
 
-## 4. launching components
+## 5. launching base components
 
 run `start.sh` to execute norns.
 
@@ -117,7 +117,7 @@ with crone running, `matron.sh`, from the norns directory, creates a `matron` pr
 
 matron waits for crone to finish loading before entering the main event loop.
 
-## 5. setup `maiden` the web UI client (optional)
+## 6. setup `maiden` the web UI client (optional)
 
 ### download and install dust
 
@@ -128,7 +128,7 @@ cd dust
 git reset --hard c10c62c24e88d1dc10c5eb3ed77f5b9b451fbe6c
 ```
 
-### download and install maiden
+### a. download and install maiden
 
 ```
 sudo apt-get install golang
@@ -144,7 +144,7 @@ cd maiden
 cp -v tool/start.sh .
 ```
 
-### setup and build maiden UI
+### b. setup and build maiden UI
 
 ```
 sudo apt remove cmdtest yarn
@@ -164,7 +164,7 @@ cp -rv ./web/build ./app
 run `start.sh` to execute it and browse it [http://127.0.0.1:5000/maiden](http://127.0.0.1:5000/maiden)
 
 
-## 6. docs addendum (optional)
+## 7. docs addendum (optional)
 
 if you want to generate the docs (using ldoc) first install:
 
