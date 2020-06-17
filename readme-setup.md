@@ -5,10 +5,10 @@
 ```
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get install fbset liblo-dev build-essential libboost-all-dev libnanomsg-dev supercollider-language supercollider-server supercollider-supernova supercollider-dev liblua5.3-dev libudev-dev libevdev-dev liblo-dev libcairo2-dev libavahi-compat-libdnssd-dev libasound2-dev sc3-plugins ladspalist x11vnc tigervnc-viewer
+sudo apt-get install liblo-dev pkg-config git build-essential libboost-all-dev libnanomsg-dev supercollider-language supercollider-server supercollider-supernova supercollider-dev liblua5.3-dev libudev-dev libevdev-dev liblo-dev libcairo2-dev libavahi-compat-libdnssd-dev libasound2-dev libjack-jackd2-dev sc3-plugins ladspalist x11vnc tigervnc-viewer fbset
 ```
 
-## 2. building norns and install monome.h (libmonome)
+## 2. building and install monome.h (libmonome)
 
 ```
 git clone https://github.com/monome/libmonome.git
@@ -17,6 +17,11 @@ python ./waf configure
 python ./waf
 sudo ln -s /usr/bin/python3 /usr/bin/python
 sudo python ./waf install
+```
+
+## 3. building norns 
+
+```
 cd ~
 git clone -b virtfb https://github.com/AudioHackLab/norns.git
 cd norns
@@ -29,12 +34,42 @@ this should build all the c-based components (`matron` and `ws-wrapper`.)
 the `crone` audio engine consists of supercollider classes. copy files to the default location for user SC extensions
 
 ```
+sclang 
 pushd sc
 ./install.sh
 popd
+pkill sclang
 ```
 
-## 3. configure vfb
+## 4. vfb (virtual norns oled)
+
+### a. compile vfb (don't need it on debian, do it with ubuntu and derivate only)
+
+Assuming you are using latest ubuntu stable and your linux kernel running is v5.4 (if not adapt next wget url).
+```
+cd ~
+mkdir linux-vfb
+cd linux-vfb
+wget https://raw.githubusercontent.com/torvalds/linux/v5.4/drivers/video/fbdev/vfb.c
+cat <<EOF > Makefile
+obj-m += vfb.o
+PWD := $(shell pwd)
+
+all:
+	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
+
+install:
+	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules_install
+
+clean:
+	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean    
+EOF
+make clean
+make all
+sudo make install
+```
+
+### b. configure vfb
 
 ```
 sudo modprobe vfb vfb_enable=1
@@ -56,11 +91,12 @@ run `start.sh` to execute norns.
 Notes:\
 The OSC rx port to control matron bind at: 10111 .\
 To see the virtual oled screen run `xvncviewer 127.0.0.1:5901`\
+
 This script will start two separate services automatically:
 
 ### a. `crone` (audio engine)
 
-run `crone.sh` from the norns directory. this creates a `sclang` process wrapped with `ws-wrapper`
+`crone.sh`, from the norns directory, creates a `sclang` process wrapped with `ws-wrapper`
 
 if the crone classes are installed correctly, you should see some lines like this in output from sclang initialization: 
 
@@ -77,7 +113,7 @@ and immediately after sclang init, you should see the server being booted and so
 
 ### b. `matron` (lua interpreter)
 
-with the audio engine running, run `matron.sh` from the norns directory. this creates a `matron` process wrapped with `ws-wrapper` and vnc server running on this host at port 5901.
+with crone running, `matron.sh`, from the norns directory, creates a `matron` process wrapped with `ws-wrapper` and vnc server running on this host at port 5901.
 
 matron waits for crone to finish loading before entering the main event loop.
 
