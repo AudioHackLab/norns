@@ -34,7 +34,7 @@ this should build all the c-based components (`matron` and `ws-wrapper`.)
 the `crone` audio engine consists of supercollider classes. copy files to the default location for user SC extensions
 
 ```
-sclang 
+sclang &
 pushd sc
 ./install.sh
 popd
