@@ -86,11 +86,11 @@ exit
 
 ## 5. launching base components
 
-run `start.sh` to execute norns.
+run `start.sh` to execute norns, run `stop.sh` to terminate norns.
 
 Notes:\
 The OSC rx port to control matron bind at: 10111 .\
-To see the virtual oled screen run `xvncviewer 127.0.0.1:5901`
+x11vnc will be executed automatically and you'll get notified about the host and port number, i.e. 127.0.0.1:5901`. So to see the virtual oled screen run `xvncviewer 127.0.0.1:5901`
 
 This script will start two separate services automatically:
 
