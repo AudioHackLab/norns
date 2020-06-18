@@ -12,7 +12,7 @@ sudo apt-get upgrade
 sudo apt-get install liblo-dev pkg-config git build-essential libboost-all-dev libnanomsg-dev supercollider-language supercollider-server supercollider-supernova supercollider-dev liblua5.3-dev libudev-dev libevdev-dev liblo-dev libcairo2-dev libavahi-compat-libdnssd-dev libasound2-dev libjack-jackd2-dev sc3-plugins ladspalist x11vnc tigervnc-viewer fbset
 ```
 
-## 2. building and install monome.h (libmonome)
+## 2. building and install libmonome
 
 ```
 git clone https://github.com/monome/libmonome.git
