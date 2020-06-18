@@ -1,10 +1,12 @@
 # norns setup
 
-## 0. prerequisites
+## 1. prerequisites
 
 Jack audio server must be running and work properly.
 
-## 1. install dependencies packages
+## 2. install dependencies 
+
+### a. packages
 
 ```
 sudo apt-get update
@@ -12,7 +14,7 @@ sudo apt-get upgrade
 sudo apt-get install liblo-dev pkg-config git build-essential libboost-all-dev libnanomsg-dev supercollider-language supercollider-server supercollider-supernova supercollider-dev liblua5.3-dev libudev-dev libevdev-dev liblo-dev libcairo2-dev libavahi-compat-libdnssd-dev libasound2-dev libjack-jackd2-dev sc3-plugins ladspalist x11vnc tigervnc-viewer fbset
 ```
 
-## 2. building and install libmonome
+### b. libmonome
 
 ```
 git clone https://github.com/monome/libmonome.git
