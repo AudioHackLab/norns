@@ -1,6 +1,10 @@
 # norns setup
 
-## 1. install packages prerequisites
+## 0. prerequisites
+
+Jack audio server must be running and work properly.
+
+## 1. install dependencies packages
 
 ```
 sudo apt-get update
