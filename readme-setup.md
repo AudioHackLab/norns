@@ -11,7 +11,7 @@ Jack audio server must be running and work properly.
 ```
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get install liblo-dev pkg-config git build-essential libboost-all-dev libnanomsg-dev supercollider-language supercollider-server supercollider-supernova supercollider-dev liblua5.3-dev libudev-dev libevdev-dev liblo-dev libcairo2-dev libavahi-compat-libdnssd-dev libasound2-dev libjack-jackd2-dev sc3-plugins ladspalist x11vnc tigervnc-viewer fbset
+sudo apt-get install liblo-dev pkg-config git build-essential libboost-all-dev libnanomsg-dev supercollider-language supercollider-server supercollider-supernova supercollider-dev liblua5.3-dev libudev-dev libevdev-dev liblo-dev libcairo2-dev libavahi-compat-libdnssd-dev libasound2-dev libjack-jackd2-dev sc3-plugins ladspalist x11vnc novnc fbset
 ```
 
 ### b. libmonome
@@ -47,7 +47,8 @@ popd
 pkill sclang
 ```
 
-## 4. vfb (virtual norns oled)
+## 4. emulate norns interface
+
 
 ### a. compile vfb (don't need it on debian, do it with ubuntu and derivate only)
 
@@ -89,17 +90,26 @@ options vfb vfb_enable=1
 EOF
 exit
 ```
+### c. install open-stage-control
+
+Download open-stage-control from here: [https://openstagecontrol.ammd.net/download](https://openstagecontrol.ammd.net/download) open-stage-control-VERSION-ARCH.deb
+Install it by running this as root in a terminal, i.e. if you are on amd64 bit do:
+```
+sudo su
+cd /tmp/
+wget https://github.com/jean-emmanuel/open-stage-control/releases/download/v1.0.3/open-stage-control-1.0.3-amd64.deb
+dpkg -i open-stage-control-1.0.3-amd64.deb
+exit
+```
 
 ## 5. launching base components
 
-Run `start.sh` to execute norns, run `stop.sh` to terminate norns.
+Run `start.sh` to execute norns and there you go!
 
-Notes:\
-The OSC rx port to control matron bind at: 10111 .\
-x11vnc will be executed automatically and you'll get notified about the host and port number, i.e. 127.0.0.1:5901. 
-So to see the virtual oled screen run `xvncviewer 127.0.0.1:5901`
+Run `stop.sh` to terminate norns.
 
-This script will start two separate services automatically:
+### Notes:
+Start script will start two separate services automatically:
 
 ### a. `crone` (audio engine)
 
@@ -120,9 +130,9 @@ and immediately after sclang init, you should see the server being booted and so
 
 ### b. `matron` (lua interpreter)
 
-with crone running, `matron.sh`, from the norns directory, creates a `matron` process wrapped with `ws-wrapper` and vnc server running on this host at port 5901.
-
-matron waits for crone to finish loading before entering the main event loop.
+with crone running, `matron.sh`, from the norns directory, creates a `matron` process wrapped with `ws-wrapper` then matron waits for crone to finish loading before entering the main event loop.\
+Matron is controlled by OSC rc port that bind at UDP: 10111 and open-stage-control will connect to that port to send osc message.\
+The script also lanch x11vnc (that will be executed automatically and you'll get notified about the host and port number, i.e. 127.0.0.1:5901) novnc and open-stage-control.\
 
 ## 6. setup `maiden` the web UI client (optional)
 
