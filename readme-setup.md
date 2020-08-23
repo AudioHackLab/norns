@@ -132,7 +132,7 @@ and immediately after sclang init, you should see the server being booted and so
 
 with crone running, `matron.sh`, from the norns directory, creates a `matron` process wrapped with `ws-wrapper` then matron waits for crone to finish loading before entering the main event loop.\
 Matron is controlled by OSC rc port that bind at UDP: 10111 and open-stage-control will connect to that port to send osc message.\
-The script also lanch x11vnc (that will be executed automatically and you'll get notified about the host and port number, i.e. 127.0.0.1:5901) novnc and open-stage-control.\
+The script also lanch x11vnc (that will be executed automatically and you'll get notified about the host and port number, i.e. 127.0.0.1:5901) novnc and open-stage-control.
 
 ## 6. setup `maiden` the web UI client (optional)
 
