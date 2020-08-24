@@ -4,7 +4,7 @@
 
 Jack audio server must be running and work properly.
 
-## 2. install dependencies 
+## 2. install and configure dependencies 
 
 ### a. packages
 
@@ -23,6 +23,32 @@ python ./waf configure
 python ./waf
 sudo ln -s /usr/bin/python3 /usr/bin/python
 sudo python ./waf install
+```
+
+### c. novnc ssl key
+
+```
+openssl req -x509 -nodes -newkey rsa:2048 -keyout ~/norns/novnc.pem -out ~/norns/novnc.pem -days 365
+
+Generating a RSA private key
+............+++++
+......+++++
+writing new private key to 'novnc.pem'
+-----
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [AU]:JP   # country
+State or Province Name (full name) [Some-State]:Hiroshima   # state
+Locality Name (eg, city) []:Hiroshima  # city
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:GTS   # company
+Organizational Unit Name (eg, section) []:Server World   # department
+Common Name (e.g. server FQDN or YOUR name) []:dlp.srv.world   # server's FQDN
+Email Address []:root@srv.world   # admin email
 ```
 
 ## 3. building norns 
@@ -132,7 +158,7 @@ and immediately after sclang init, you should see the server being booted and so
 
 with crone running, `matron.sh`, from the norns directory, creates a `matron` process wrapped with `ws-wrapper` then matron waits for crone to finish loading before entering the main event loop.\
 Matron is controlled by OSC rc port that bind at UDP: 10111 and open-stage-control will connect to that port to send osc message.\
-The script also lanch x11vnc (that will be executed automatically and you'll get notified about the host and port number, i.e. 127.0.0.1:5901) novnc and open-stage-control.\
+The script also lanch x11vnc (that will be executed automatically and you'll get notified about the host and port number, i.e. 127.0.0.1:5901) novnc and open-stage-control.
 
 ## 6. setup `maiden` the web UI client (optional)
 
