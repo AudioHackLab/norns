@@ -40,7 +40,6 @@
         "width": "auto",
         "height": "auto",
         "expand": "false",
-        "colorBg": "auto",
         "colorText": "auto",
         "colorWidget": "auto",
         "colorStroke": "auto",
@@ -66,7 +65,11 @@
         "decimals": 2,
         "target": "",
         "ignoreDefaults": false,
-        "bypass": false
+        "bypass": false,
+        "lineWidth": "auto",
+        "html": "",
+        "vertical": false,
+        "wrap": false
       },
       {
         "type": "button",
@@ -78,7 +81,6 @@
         "width": "auto",
         "height": "auto",
         "expand": "false",
-        "colorBg": "auto",
         "colorText": "auto",
         "colorWidget": "auto",
         "colorStroke": "auto",
@@ -104,7 +106,11 @@
         "decimals": 2,
         "target": "",
         "ignoreDefaults": false,
-        "bypass": false
+        "bypass": false,
+        "lineWidth": "auto",
+        "html": "",
+        "vertical": false,
+        "wrap": false
       },
       {
         "type": "button",
@@ -116,7 +122,6 @@
         "width": "auto",
         "height": "auto",
         "expand": "false",
-        "colorBg": "auto",
         "colorText": "auto",
         "colorWidget": "auto",
         "colorStroke": "auto",
@@ -142,7 +147,11 @@
         "decimals": 2,
         "target": "",
         "ignoreDefaults": false,
-        "bypass": false
+        "bypass": false,
+        "lineWidth": "auto",
+        "html": "",
+        "vertical": false,
+        "wrap": false
       },
       {
         "type": "encoder",
@@ -154,7 +163,6 @@
         "width": "auto",
         "height": "auto",
         "expand": "false",
-        "colorBg": "auto",
         "colorText": "auto",
         "colorWidget": "auto",
         "colorStroke": "auto",
@@ -164,7 +172,6 @@
         "alphaFillOn": "auto",
         "padding": "auto",
         "css": "",
-        "ticks": 360,
         "back": -1,
         "forth": 1,
         "release": "",
@@ -181,7 +188,15 @@
         "target": "",
         "ignoreDefaults": false,
         "bypass": false,
-        "touchAddress": ""
+        "lineWidth": "auto",
+        "html": "",
+        "spring": false,
+        "range": {
+          "min": 0,
+          "max": 1
+        },
+        "logScale": false,
+        "sensitivity": 1
       },
       {
         "type": "encoder",
@@ -193,7 +208,6 @@
         "width": "auto",
         "height": "auto",
         "expand": "false",
-        "colorBg": "auto",
         "colorText": "auto",
         "colorWidget": "auto",
         "colorStroke": "auto",
@@ -203,7 +217,6 @@
         "alphaFillOn": "auto",
         "padding": "auto",
         "css": "",
-        "ticks": 360,
         "back": -1,
         "forth": 1,
         "release": "",
@@ -220,7 +233,15 @@
         "target": "",
         "ignoreDefaults": false,
         "bypass": false,
-        "touchAddress": ""
+        "lineWidth": "auto",
+        "html": "",
+        "spring": false,
+        "range": {
+          "min": 0,
+          "max": 1
+        },
+        "logScale": false,
+        "sensitivity": 1
       },
       {
         "type": "encoder",
@@ -232,7 +253,6 @@
         "width": "auto",
         "height": "auto",
         "expand": "false",
-        "colorBg": "auto",
         "colorText": "auto",
         "colorWidget": "auto",
         "colorStroke": "auto",
@@ -242,7 +262,6 @@
         "alphaFillOn": "auto",
         "padding": "auto",
         "css": "",
-        "ticks": 360,
         "back": -1,
         "forth": 1,
         "release": "",
@@ -259,7 +278,15 @@
         "target": "",
         "ignoreDefaults": false,
         "bypass": false,
-        "touchAddress": ""
+        "lineWidth": "auto",
+        "html": "",
+        "spring": false,
+        "range": {
+          "min": 0,
+          "max": 1
+        },
+        "logScale": false,
+        "sensitivity": 1
       },
       {
         "type": "frame",
@@ -271,7 +298,6 @@
         "width": 540,
         "height": 300,
         "expand": "false",
-        "colorBg": "auto",
         "colorText": "auto",
         "colorWidget": "auto",
         "colorStroke": "auto",
@@ -287,13 +313,17 @@
         "script": "",
         "address": "auto",
         "preArgs": "",
-        "typeTags": "",
         "target": "",
-        "ignoreDefaults": false
+        "lineWidth": "auto",
+        "html": ""
       }
     ],
-    "tabs": []
+    "tabs": [],
+    "visible": true,
+    "width": "auto",
+    "height": "auto",
+    "html": ""
   },
-  "version": "1.0.3",
+  "version": "1.6.2",
   "type": "Open Stage Control session"
 }
